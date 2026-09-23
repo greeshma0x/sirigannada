@@ -4,6 +4,7 @@ import { LanguageIcon, MoonIcon, SunIcon } from "@/components/icons";
 import { useApp } from "@/components/providers/AppProviders";
 import { DestinationLink } from "@/components/ui/DestinationLink";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SOCIAL_LINKS } from "@/features/contact/lib/channels";
 import { MINE, UTILITIES } from "../lib/catalog";
 import { OfflineRow } from "./OfflineRow";
 

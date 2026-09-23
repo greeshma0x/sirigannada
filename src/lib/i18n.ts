@@ -1,8 +1,10 @@
+import { childrenStrings } from "./i18n.children";
 import type { Locale } from "./types";
 import { alphabetGlossStrings } from "./i18n.alphabetGlosses";
 import { collectionsStrings } from "./i18n.collections";
 import { contactStrings } from "./i18n.contact";
 import { contextLensStrings } from "./i18n.contextlens";
+import { continueStrings } from "./i18n.continue";
 import { gamesStrings } from "./i18n.games";
 import { homeStrings } from "./i18n.home";
 import { moreStrings } from "./i18n.more";
@@ -14,12 +16,14 @@ import { practiceStrings } from "./i18n.practice";
 import { shareStrings } from "./i18n.share";
 import { storiesStrings } from "./i18n.stories";
 import { picturebooksStrings } from "./i18n.picturebooks";
+import { privacyStrings } from "./i18n.privacy";
 import { shareCardStrings } from "./i18n.shareCard";
 import { textHealthStrings } from "./i18n.textHealth";
 import { wordGameStrings } from "./i18n.wordgame";
 
 /** All user-visible strings. Kannada first, English second. Add a key, then use `t("key")` from `useT()`. */
 export const strings = {
+  ...childrenStrings,
   appName: { kn: "ಸಿರಿಗನ್ನಡ", en: "Sirigannada" },
   tagline: { kn: "ಕನ್ನಡಕ್ಕೆ ತೆರೆದ ಜ್ಞಾನನೆಲೆ", en: "An open home for Kannada knowledge" },
   navHome: { kn: "ಮನೆ", en: "Home" },
@@ -49,6 +53,10 @@ export const strings = {
   alarPhone: { kn: "ಅಲರ್ ಉಚ್ಚಾರ", en: "Alar pronunciation" },
   wordOrigin: { kn: "ಪದದ ಮೂಲ", en: "Word origin" },
   results: { kn: "ಫಲಿತಾಂಶಗಳು", en: "Results" },
+  dictResultCount: { kn: "{n} ಫಲಿತಾಂಶಗಳು", en: "{n} results" },
+  dictResultCountOne: { kn: "1 ಫಲಿತಾಂಶ", en: "1 result" },
+  dictResultCountCapped: { kn: "{n}+ ಫಲಿತಾಂಶಗಳು", en: "{n}+ results" },
+  dictBrowseByLetter: { kn: "ಅಕ್ಷರದಿಂದ ಹುಡುಕಿ", en: "Browse by letter" },
   dictBestMatches: { kn: "ಮುಖ್ಯ ಫಲಿತಾಂಶಗಳು", en: "Best matches" },
   dictRelatedMatches: { kn: "ಇನ್ನಷ್ಟು ಫಲಿತಾಂಶಗಳು", en: "More results" },
   dictShowMore: { kn: "ಇನ್ನಷ್ಟು {count} ಪದಗಳನ್ನು ತೋರಿಸಿ", en: "Show {count} more words" },
@@ -78,6 +86,10 @@ export const strings = {
   marginCompact: { kn: "ಕಿರಿದು", en: "Compact" },
   marginNormal: { kn: "ಸಾಮಾನ್ಯ", en: "Normal" },
   marginWide: { kn: "ಅಗಲ", en: "Wide" },
+  verseLayout: { kn: "ಪುಟ ವಿನ್ಯಾಸ", en: "Page layout" },
+  verseLayoutOnePerPage: { kn: "ಪುಟಕ್ಕೊಂದು ಪದ್ಯ", en: "One verse per page" },
+  verseLayoutFlow: { kn: "ನಿರಂತರ ಓದು", en: "Continuous" },
+  verseNumber: { kn: "ಪದ್ಯ {n}", en: "Verse {n}" },
   paper: { kn: "ಕಾಗದ", en: "Paper" },
   paperLight: { kn: "ಬಿಳಿ", en: "Light" },
   paperSepia: { kn: "ಹಳದಿ", en: "Sepia" },
@@ -104,12 +116,29 @@ export const strings = {
   creditsBooks: { kn: "ಗ್ರಂಥಾಲಯದ ಪುಸ್ತಕಗಳು", en: "Books on the shelf" },
   creditsAlarTitle: { kn: "ನಿಘಂಟು", en: "Dictionary" },
   creditsAlarBody: { kn: "ಅಲರ್ ಕನ್ನಡ–ಇಂಗ್ಲಿಷ್ ನಿಘಂಟು © ವಿ. ಕೃಷ್ಣ. ಮುಕ್ತ ದತ್ತಸಂಚಯ ಪರವಾನಗಿ (ODbL 1.0). ಇಲ್ಲಿನ ನಿಘಂಟು ದತ್ತಾಂಶವೂ ODbL ಆಗಿಯೇ ಉಳಿಯುತ್ತದೆ.", en: "Alar Kannada–English dictionary © V. Krishna, Open Database License 1.0. Derived dictionary data remains ODbL." },
+  creditsSoftwareTitle: { kn: "ತಂತ್ರಾಂಶ", en: "Software" },
+  creditsSoftwareQrBody: {
+    kn: "\"ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ಮುಂದುವರಿಸಿ\" QR ಕೋಡ್ qrcode-generator (MIT ಪರವಾನಗಿ) ಬಳಸಿ ಸಾಧನದಲ್ಲೇ ರಚಿತವಾಗುತ್ತದೆ.",
+    en: "The \"Continue on another device\" QR code is rendered on-device using qrcode-generator (MIT licence).",
+  },
   authorDied: { kn: "ನಿಧನ {year}", en: "died {year}" },
   licensePublicDomain: { kn: "ಸಾರ್ವಜನಿಕ ಸ್ವತ್ತು", en: "Public domain" },
   licenseCC0: { kn: "CC0 1.0", en: "CC0 1.0" },
   licenseCCBY: { kn: "CC BY 4.0", en: "CC BY 4.0" },
+  licenseCCBY20: { kn: "CC BY 2.0", en: "CC BY 2.0" },
+  licenseCCBY25: { kn: "CC BY 2.5", en: "CC BY 2.5" },
+  licenseCCBY30: { kn: "CC BY 3.0", en: "CC BY 3.0" },
   licenseCCBYSA: { kn: "CC BY-SA 4.0", en: "CC BY-SA 4.0" },
+  licenseCCBYSA20: { kn: "CC BY-SA 2.0", en: "CC BY-SA 2.0" },
+  licenseCCBYSA25: { kn: "CC BY-SA 2.5", en: "CC BY-SA 2.5" },
+  licenseCCBYSA30: { kn: "CC BY-SA 3.0", en: "CC BY-SA 3.0" },
   licenseODbL: { kn: "ODbL 1.0", en: "ODbL 1.0" },
+  creditsCovers: { kn: "ಮುಖಪುಟ ಚಿತ್ರಗಳು", en: "Cover images" },
+  creditsCoversSub: {
+    kn: "ಪುಸ್ತಕದ ಮುಖಪುಟದ ಛಾಯಾಚಿತ್ರಗಳು ವಿಕಿಮೀಡಿಯ ಕಾಮನ್ಸ್‌ನಿಂದ; ಇಲ್ಲಿ ಬ್ರಾಂಡ್ ಬಣ್ಣದ ಛಾಯೆಯೊಂದಿಗೆ ತೋರಿಸಲಾಗಿದೆ.",
+    en: "Cover photographs come from Wikimedia Commons and are shown here with a brand duotone tint.",
+  },
+  creditsCoverPhotographer: { kn: "ಛಾಯಾಗ್ರಾಹಕ", en: "Photographer" },
   seeAllCredits: { kn: "ಎಲ್ಲ ಮೂಲಗಳು ಮತ್ತು ಪರವಾನಗಿಗಳು", en: "All sources and licences" },
   heroTitle: { kn: "ಪದದಿಂದ ಪರಂಪರೆಯವರೆಗೆ.", en: "From words to heritage." },
   heroBody: { kn: "ಹುಡುಕಿ. ಓದಿ. ಕಲಿಯಿರಿ. ಕನ್ನಡವನ್ನು ಹೊಸದಾಗಿ ಅನ್ವೇಷಿಸಿ.", en: "Search. Read. Learn. Discover Kannada anew." },
@@ -230,12 +259,14 @@ export const strings = {
   ...contextLensStrings,
   ...wordGameStrings,
   ...gamesStrings,
+  ...continueStrings,
   ...homeStrings,
   ...moreStrings,
   ...searchStrings,
   ...contactStrings,
   ...storiesStrings,
   ...picturebooksStrings,
+  ...privacyStrings,
 } as const satisfies Record<string, Record<Locale, string>>;
 
 export type StringKey = keyof typeof strings;

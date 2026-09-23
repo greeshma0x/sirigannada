@@ -3,15 +3,19 @@
 import Link from "next/link";
 import { useT } from "@/components/providers/AppProviders";
 import { LogoMark } from "@/components/ui/LogoMark";
-import { GITHUB_REPO } from "@/features/contact/lib/channels";
+import { InstagramIcon, XIcon } from "@/components/icons";
+import { GITHUB_REPO, SOCIAL_LINKS } from "@/features/contact/lib/channels";
 
 const LINKS = [
   { href: "/about", key: "navAbout" },
   { href: "/credits", key: "navCredits" },
   { href: "/contact", key: "navContact" },
+  { href: "/privacy", key: "navPrivacy" },
 ] as const;
 
-/** Site footer on a 2 px ink rule: mono mark, four links, one licence line. Hidden in the reader. */
+const SOCIAL_ICON = { instagram: InstagramIcon, x: XIcon } as const;
+
+/** Site footer on a 2 px ink rule: mono mark, page links, social icons when set, one licence line. Hidden in the reader. */
 export function SiteFooter() {
   const t = useT();
   const link =
@@ -43,6 +47,15 @@ export function SiteFooter() {
           >
             {t("aboutGithub")}
           </a>
+          {SOCIAL_LINKS.map((s) => {
+            const Icon = SOCIAL_ICON[s.id];
+            return (
+              <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer" className={`${link} gap-1.5`} aria-label={t(s.labelKey)}>
+                <Icon size={18} />
+                <span>{t(s.labelKey)}</span>
+              </a>
+            );
+          })}
         </nav>
         <p className="text-xs text-muted">{t("footerLicence")}</p>
       </div>

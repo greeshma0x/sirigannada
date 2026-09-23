@@ -39,6 +39,15 @@ export const SunIcon = (p: IconProps) => (
 export const MoonIcon = (p: IconProps) => (
   <Svg {...p}><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" /></Svg>
 );
+export const InstagramIcon = (p: IconProps) => (
+  <Svg {...p}><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><circle cx="12" cy="12" r="3.75" /><path d="M17.2 6.8h.01" /></Svg>
+);
+/** The X (formerly Twitter) logo, filled so it reads as a brand mark rather than a close button. */
+export const XIcon = (p: IconProps) => (
+  <Svg {...p} fill="currentColor" stroke="none">
+    <path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.25 6.93Zm-1.29 19.5h2.04L6.49 3.24H4.3Z" />
+  </Svg>
+);
 export const CloseIcon = (p: IconProps) => (
   <Svg {...p}><path d="M6 6l12 12M18 6 6 18" /></Svg>
 );
@@ -142,6 +151,14 @@ export const PuzzleIcon = (p: IconProps) => (
     <path d="M15 14h4v6h-6v-3.2a1.8 1.8 0 1 0-3.6 0V20H5v-6" />
   </Svg>
 );
+export const DevicesIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <rect x="2" y="4" width="12" height="9" rx="1.5" />
+    <path d="M6 17h5M8.5 13v4" />
+    <rect x="14.5" y="8.5" width="7.5" height="12.5" rx="1.5" />
+    <path d="M17.6 18.5h1.3" />
+  </Svg>
+);
 export const BookOpenIcon = (p: IconProps) => (
   <Svg {...p}><path d="M12 6.5C10.5 5 8 4.5 3 4.5v13c5 0 7.5.5 9 2 1.5-1.5 4-2 9-2v-13c-5 0-7.5.5-9 2z" /><path d="M12 6.5v13" /></Svg>
 );
@@ -182,5 +199,34 @@ export const SkipForward15Icon = (p: IconProps) => (
   <Svg {...p}>
     <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3" /><path d="M20 3.5v3.7h-3.7" />
     <text x="11.8" y="15" textAnchor="middle" fontSize="7.5" fontWeight="700" fill="currentColor" stroke="none">15</text>
+  </Svg>
+);
+
+/* Literary-form motifs — the small mark on a drawn (photo-less) book cover. Flat, calm, 24px grid. */
+export const LampIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M6 14c0-2.2 2.7-4 6-4s6 1.8 6 4-2.7 4-6 4-6-1.8-6-4z" />
+    <path d="M18 14c1.8 0 3-.9 3-.9M12 10c0-2 1.5-3 1.5-4.5" />
+    <path d="M9 18.5h6" />
+  </Svg>
+);
+export const TripadiIcon = (p: IconProps) => (
+  <Svg {...p}><path d="M4 7h16M4 12h12M4 17h8" /></Svg>
+);
+export const ShatpadiIcon = (p: IconProps) => (
+  <Svg {...p}><path d="M4 4.5h16M4 8h11M4 11.5h16M4 15h11M4 18.5h16M4 22h8" /></Svg>
+);
+export const VeenaIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="8" cy="16" r="4.5" />
+    <path d="M11 13 19 5" />
+    <path d="M17.5 3.5 21 7l-2 2-3.5-3.5z" />
+    <path d="M8 16h.01" />
+  </Svg>
+);
+export const QuillIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M20 4c-8 .5-12 4.5-13 9l4 4c4.5-1 8.5-5 9-13z" />
+    <path d="M11 13 4 20" />
   </Svg>
 );

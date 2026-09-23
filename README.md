@@ -53,6 +53,15 @@ Open [ಕಲಿಯಿರಿ](https://sirigannada.in/learn) for the alphabet, pra
 
 The daily word pool and Padabandha route are included in offline installation. No score, answer, or learning history is sent anywhere.
 
+### ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ಮುಂದುವರಿಸಿ · Continue on another device
+
+Start on a laptop, carry on with a phone or iPad — no account, no login. It is opt-in; the site stays local and offline by default.
+
+- Any verse or page link (`/library/<slug>#b<index>`) opens at the same spot in another browser.
+- On the reader (Reading sheet), Padabandha, the daily word, and Collections, tap **ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ಮುಂದುವರಿಸಿ**. You get a QR and a `sirigannada.in/continue#…` link. Scan or open it on the other device and it resumes your place, in-progress games, and starred words.
+
+The site has no server, so the whole progress snapshot travels **inside the link** — nothing is uploaded, and the daily-word answer is never included. Links carry their own expiry (about 36 hours), checked against the device's own clock — a convenience against stale links, not a security boundary. Anyone who has the link can mint a valid one, so opening it always shows what it would change before applying anything.
+
 ### ಮಕ್ಕಳ ಕಥೆಗಳು · Children's audio stories
 
 1. Tap **ಮಕ್ಕಳ ಕಥೆಗಳು** from the home page, the library, or **ಇನ್ನಷ್ಟು · More**.
@@ -96,7 +105,7 @@ After it is installed, turn the network off and try ನಿಘಂಟು plus one 
 | ಕಲಿಕೆ | Learning | Alphabet, practice, daily word game, Padabandha |
 | ಸಲಕರಣೆ | Tools | Transliteration, numbers, Nudi conversion, text checks |
 | ಗಾದೆಗಳು | Proverbs | 2,000+ searchable Kannada sayings |
-| ಮಕ್ಕಳ ಕಥೆಗಳು | Stories | Narrated children's stories with read-along and offline saving |
+| ಮಕ್ಕಳ ಕಥೆಗಳು | Children's stories | ಪಂಚತಂತ್ರ retellings, ಕೇಳಿ ಓದಿ narrated picture books, and ಚಿತ್ರಪುಸ್ತಕಗಳು to read yourself |
 
 Code is AGPL-3.0. Original writing is CC BY-SA 4.0. If this site stops, anyone can run it again from the source.
 
@@ -132,28 +141,18 @@ The offline shell (the `PRECACHE_SHELL` routes in `public/sw.js`, their HTML, th
 `/_next/static` JS/CSS/font assets those pages reference, and the manifest + icons) has a
 2 MB budget; dictionary shards and other `/data/**` files are fetched on demand and are
 excluded. Only core routes are precached at install (home, dictionary, library, proverbs,
-games, the stories and picture-book hubs, More, and the offline manager); every other page is
+games, the children's hub and its two picture-book sections, More, and the offline manager); every other page is
 cached the first time it is opened, so recently visited pages work offline and the rest need
 the network once. Check the budget after a static build:
 `TMPDIR=/tmp npx next build && npm run check:bundle` (pass `--budget <bytes>` to override).
 CI fails when the shell is over budget — see `scripts/check-bundle.ts`.
 
-### Google Analytics
+### Analytics
 
-Production builds load the GA4 web stream `G-PPV05Q4NXS` after the page is idle (it is the
-largest third-party download, so it must not delay first paint). Development mode does
-not load analytics. The measurement ID is public and baked into the static export.
-
-In the GA4 web stream, enable Enhanced Measurement → Page views → **Page changes
-based on browser history events** to measure client-side navigation. The app uses
-Google's automatic page views; do not add a second manual page-view tag. Verify an
-initial visit and navigation between routes in GA4 Realtime or Tag Assistant.
-
-Google receives standard analytics events and page URLs, including query parameters,
-and may set analytics cookies. Google Signals and advertising-personalization signals
-are disabled. No custom events send tool text, game answers, or saved learning
-progress. Changes to the analytics integration follow the accepted-issue and review
-process in [CONTRIBUTING.md](CONTRIBUTING.md).
+There is no analytics script and no cookie. Visitor numbers (requests, countries, top pages,
+referrers, browsers) come from Cloudflare's dashboard for the `sirigannada.in` zone, counted
+server-side. [/privacy](https://www.sirigannada.in/privacy) and the Play Store Data safety form
+both say so; do not add a tracking script without changing them first.
 
 ## Data credits
 
@@ -164,3 +163,20 @@ process in [CONTRIBUTING.md](CONTRIBUTING.md).
 ## License
 
 Code: [AGPL-3.0-or-later](LICENSE). Original content and documentation: CC BY-SA 4.0. Third-party data keeps the licence in its `provenance` block.
+
+## ಮಕ್ಕಳ ಕಥೆಗಳು · Children’s stories
+
+**ಮಕ್ಕಳ ಕಥೆಗಳು** (desktop header, home shelf, and **ಇನ್ನಷ್ಟು · More**) opens one hub with three
+sections, in the order of `data/children-src/collections.json`: **ಪಂಚತಂತ್ರ ಕಥೆಗಳು** (illustrated
+Kannada retellings), **ಕೇಳಿ ಓದಿ** (StoryWeaver picture books that have narration, so a child can
+listen and read along), and **ಚಿತ್ರಪುಸ್ತಕಗಳು** (the picture books without narration). Both
+picture-book sections share the same ಎಲ್ಲ · ಹಂತ ೧ · ೨ · ೩ · ೪+ level chips, search, Continue card
+and save-all. A book’s back button returns to the section it belongs to. New sections are added
+to `collections.json`; a `stories` section needs its own folder, a `picturebooks` section only its
+`narrated` flag.
+
+To add the next illustrated story, follow the tracked [production playbook](data/children-src/README.md),
+[illustration recipe](data/children-src/ILLUSTRATIONS.md), and
+[review checklist](data/children-src/REVIEW.md). Text and illustrations require a recorded
+coordinator or agent review before a GitHub push. `npm run data:children` checks the content
+and binds approval to the exact story and image files.

@@ -6,17 +6,17 @@
  *    Only the core routes (home, dictionary, library, proverbs, games, hubs, offline manager) are
  *    precached at install; every other page is cached the first time it is opened, so recently
  *    visited pages work offline and the rest need the network once.
- *  - Data (/data/**): cache-first. Dictionary shards, book text, images and audio never change
- *    once built. The catalogue files in PRECACHE_DATA (manifests, proverbs, game data) DO change
+ *  - Data (/data/**): cache-first. Dictionary shards, images and audio never change once
+ *    built. The catalogue files in PRECACHE_DATA (manifests, proverbs, game data) and book text DO change
  *    on every content deploy, so they are stale-while-revalidate in the same cache: instant
  *    from cache, refreshed in the background, new books visible on the next open. Bumping
  *    DATA_CACHE is reserved for format changes, since it drops everything saved for offline.
  *  - Navigation fallback: if offline and the page is not cached, serve the cached home page.
  */
-const SHELL_CACHE = "sg-shell-v12";
+const SHELL_CACHE = "sg-shell-v14";
 // Keep DATA_CACHE in lockstep with src/lib/cacheNames.ts (enforced by cacheNames.test.ts).
 const DATA_CACHE = "sg-data-v5";
-const PRECACHE_SHELL = ["/", "/dictionary", "/library", "/proverbs", "/collections", "/learn/practice", "/games", "/games/word", "/games/padabandha", "/stories", "/picturebooks", "/more", "/tools/offline", "/manifest.webmanifest", "/favicon.svg"];
+const PRECACHE_SHELL = ["/children", "/", "/dictionary", "/library", "/proverbs", "/collections", "/learn/practice", "/games", "/games/word", "/games/padabandha", "/stories", "/children/keli-odi", "/children/picturebooks", "/more", "/tools/offline", "/manifest.webmanifest", "/favicon.svg"];
 const PRECACHE_DATA = ["/data/books/manifest.json", "/data/dict/manifest.json", "/data/dict/wordgame.json", "/data/dict/padabandha.json", "/data/proverbs.json", "/data/stories/manifest.json", "/data/picturebooks/manifest.json"];
 
 self.addEventListener("install", (event) => {
@@ -48,7 +48,9 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (url.pathname.startsWith("/data/")) {
-    const isCatalogue = PRECACHE_DATA.includes(url.pathname);
+    // Book text is revalidated too: a book grows when more sandhis are imported, and a
+    // cache-first copy would hide the new chapters from returning readers forever.
+    const isCatalogue = PRECACHE_DATA.includes(url.pathname) || /^\/data\/books\/[^/]+\.json$/.test(url.pathname);
     event.respondWith(isCatalogue ? staleWhileRevalidate(request, DATA_CACHE) : cacheFirst(request, DATA_CACHE));
     return;
   }

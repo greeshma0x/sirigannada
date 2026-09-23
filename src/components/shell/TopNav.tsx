@@ -10,7 +10,7 @@ import { useApp } from "@/components/providers/AppProviders";
 import { DESKTOP_NAV_ITEMS, isActive } from "./navItems";
 import { useOfflineReady } from "./useOfflineReady";
 
-/** Desktop-only header on a 2 px ink rule: mark + wordmark, Kannada links, offline status, Install. Phones use the bottom bar; language and theme live on /more. */
+/** Desktop-only header on a 2 px ink rule: mark + ಸಿರಿಗನ್ನಡ wordmark (no Latin line), Kannada links, offline status, Install. One row from xl up; below that the links take a centred second row so nothing overflows at tablet widths. Phones use the bottom bar; language and theme live on /more. */
 export function TopNav() {
   const pathname = usePathname();
   const { theme, setTheme, locale, setLocale, t } = useApp();
