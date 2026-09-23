@@ -9,22 +9,22 @@ import type { BookForm } from "@/lib/types";
  */
 export function MiniCover({
   title,
-  form,
   className = "",
   accent = false,
 }: {
   title: string;
-  form?: BookForm;
   className?: string;
   accent?: boolean;
 }) {
-  const Motif = form ? FORM_MOTIFS[form] : null;
   return (
     <span
       aria-hidden="true"
       className={`relative block shrink-0 overflow-hidden rounded-md bg-elevated border border-line border-t-[3px] ${accent ? "border-t-accent" : "border-t-ink"} p-1.5 ${className}`}
     >
-      <span className="block font-serif font-semibold text-xs leading-normal text-ink line-clamp-3" lang="kn">
+      <span
+        className="block font-serif font-semibold text-xs leading-normal text-ink line-clamp-3"
+        lang="kn"
+      >
         {title}
       </span>
       {Motif && <Motif size={16} className="absolute bottom-1.5 left-1.5 text-accent" />}

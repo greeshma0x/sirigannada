@@ -32,7 +32,9 @@ export function BookRow({
   const { locale } = useApp();
   const title = locale === "en" && book.titleEn ? book.titleEn : book.title;
   const author = locale === "en" && book.authorEn ? book.authorEn : book.author;
-  const percent = progress ? readPercent(progress.block, book.blockCount) : null;
+  const percent = progress
+    ? readPercent(progress.block, book.blockCount)
+    : null;
 
   return (
     <Link
@@ -45,24 +47,53 @@ export function BookRow({
         <MiniCover title={book.title} form={book.form} className={COVER_SIZE} />
       )}
       <span className="min-w-0">
-        <span className="block font-serif font-semibold text-base leading-snug text-ink" lang={locale}>
+        <span
+          className="block font-serif font-semibold text-base leading-snug text-ink"
+          lang={locale}
+        >
           {title}
         </span>
         <span className="mt-1 block text-sm text-muted truncate">
-          {author} · {formatEra(book.era, locale)} · {t(FORM_KEYS[book.form])} · {localiseDigits(book.blockCount, locale)}
+          {author} · {formatEra(book.era, locale)} · {t(FORM_KEYS[book.form])} ·{" "}
+          {localiseDigits(book.blockCount, locale)}
         </span>
       </span>
       {percent !== null ? (
-        <span className="flex flex-col items-end gap-1.5" aria-label={t("libraryPercentRead", { n: localiseDigits(percent, locale) })}>
-          <span className="text-sm text-muted">{localiseDigits(percent, locale)}%</span>
-          <span aria-hidden="true" className="block w-30 h-1 overflow-hidden rounded-full bg-paper-edge">
-            <span className="block h-full bg-gold" style={{ width: `${percent}%` }} />
+        <span
+          className="flex flex-col items-end gap-1.5"
+          aria-label={t("libraryPercentRead", {
+            n: localiseDigits(percent, locale),
+          })}
+        >
+          <span className="text-sm text-muted">
+            {localiseDigits(percent, locale)}%
+          </span>
+          <span
+            aria-hidden="true"
+            className="block w-30 h-1 overflow-hidden rounded-full bg-paper-edge"
+          >
+            <span
+              className="block h-full bg-gold"
+              style={{ width: `${percent}%` }}
+            />
           </span>
         </span>
       ) : cached === null ? null : cached ? (
-        <CheckIcon size={20} className="text-ink" aria-label={t("libraryOnDevice")} role="img" aria-hidden={false} />
+        <CheckIcon
+          size={20}
+          className="text-ink"
+          aria-label={t("libraryOnDevice")}
+          role="img"
+          aria-hidden={false}
+        />
       ) : (
-        <DownloadIcon size={20} className="text-muted" aria-label={t("libraryNotOnDevice")} role="img" aria-hidden={false} />
+        <DownloadIcon
+          size={20}
+          className="text-muted"
+          aria-label={t("libraryNotOnDevice")}
+          role="img"
+          aria-hidden={false}
+        />
       )}
     </Link>
   );
