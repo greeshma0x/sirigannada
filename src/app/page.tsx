@@ -16,7 +16,7 @@ export default function HomePage() {
   // The audio-story shelf stays unlinked until at least one licensed recording ships.
   const hasStories = readStoriesManifest().stories.length > 0;
   return (
-    <div className="mx-auto max-w-6xl px-5 md:px-10 pb-12">
+    <div className="mx-auto max-w-7xl px-5 md:px-10 pb-12">
       <HomeHeader />
       <div className="flex flex-col gap-10 md:grid md:grid-cols-12 md:grid-rows-[auto_1fr] md:gap-x-6 md:gap-y-10">
         <div className="md:col-span-7 md:row-start-1">
@@ -34,10 +34,20 @@ export default function HomePage() {
       </div>
       <ul className="mt-10">
         <li>
-          {hasStories && <HomeRow href="/stories" titleKey="navStories" subKey="homeStoriesSub" />}
+          {hasStories && (
+            <HomeRow
+              href="/stories"
+              titleKey="navStories"
+              subKey="homeStoriesSub"
+            />
+          )}
         </li>
         <li>
-          <HomeRow href="/proverbs" titleKey="proverbsTitle" subKey="homeProverbsSub" />
+          <HomeRow
+            href="/proverbs"
+            titleKey="proverbsTitle"
+            subKey="homeProverbsSub"
+          />
         </li>
         <li>
           <HomeRow href="/learn" titleKey="learnTitle" subKey="homeLearnSub" />
