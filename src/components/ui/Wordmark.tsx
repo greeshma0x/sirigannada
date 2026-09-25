@@ -13,7 +13,9 @@ export function Wordmark({
 }) {
   return (
     <span className="inline-flex items-center gap-3">
-      <LogoMark size={size} />
+      <div className="relative -top-2">
+        <LogoMark size={size} />
+      </div>
       <span className="flex flex-col leading-none">
         <span
           className="font-serif font-bold text-ink"

@@ -16,10 +16,14 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { story } = usePlayer();
   const immersive =
-    (pathname.startsWith("/library/") && pathname.length > "/library/".length) ||
-    (pathname.startsWith("/picturebooks/") && pathname.length > "/picturebooks/".length && !pathname.endsWith("/credits"));
+    (pathname.startsWith("/library/") &&
+      pathname.length > "/library/".length) ||
+    (pathname.startsWith("/picturebooks/") &&
+      pathname.length > "/picturebooks/".length &&
+      !pathname.endsWith("/credits"));
   // The full player and the read-along view carry their own transport; no mini-player there.
-  const onOwnPlayer = story !== null && pathname.startsWith(`/stories/${story.slug}`);
+  const onOwnPlayer =
+    story !== null && pathname.startsWith(`/stories/${story.slug}`);
   const miniPlayer = story !== null && !onOwnPlayer && !immersive;
 
   if (immersive) return <>{children}</>;
@@ -27,7 +31,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-dvh flex flex-col">
       <TopNav />
-      <main className={`flex-1 w-full ${miniPlayer ? "pb-14" : ""}`}>{children}</main>
+      <main className={`flex-1 w-full ${miniPlayer ? "pb-14" : ""}`}>
+        {children}
+      </main>
       <div className={`pb-20 md:pb-0 ${miniPlayer ? "md:pb-14" : ""}`}>
         <SiteFooter />
       </div>

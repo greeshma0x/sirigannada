@@ -9,13 +9,17 @@ import type { BookForm } from "@/lib/types";
  */
 export function MiniCover({
   title,
+  form,
   className = "",
   accent = false,
 }: {
   title: string;
+  form?: BookForm;
   className?: string;
   accent?: boolean;
 }) {
+  const Motif = form ? FORM_MOTIFS[form] : undefined;
+
   return (
     <span
       aria-hidden="true"
@@ -27,7 +31,9 @@ export function MiniCover({
       >
         {title}
       </span>
-      {Motif && <Motif size={16} className="absolute bottom-1.5 left-1.5 text-accent" />}
+      {Motif && (
+        <Motif size={16} className="absolute bottom-1.5 left-1.5 text-accent" />
+      )}
     </span>
   );
 }

@@ -17,7 +17,7 @@ export function GunitaksharaChart() {
     <section className="flex flex-col gap-4">
       <SectionHeading k="alphabetGunita" />
       <p className="text-base text-secondary leading-kannada">{t("alphabetGunitaHint")}</p>
-      <div role="group" aria-label={t("alphabetPickConsonant")} className="grid grid-cols-7 gap-1">
+      <div role="group" aria-label={t("alphabetPickConsonant")} className="grid grid-cols-6 gap-1 sm:grid-cols-7">
         {SCHOOL_CONSONANTS.map((letter) => {
           const selected = letter === base;
           return (
@@ -39,7 +39,7 @@ export function GunitaksharaChart() {
           );
         })}
       </div>
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-6 gap-1 sm:grid-cols-7">
         {forms.map((glyph) => (
           <LetterCell key={glyph} glyph={glyph} />
         ))}

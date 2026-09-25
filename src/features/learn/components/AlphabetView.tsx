@@ -14,7 +14,7 @@ export function AlphabetView() {
       <VowelChart />
       <ConsonantChart />
       <GunitaksharaChart />
-      <OttaksharaExamples />
+      {/* <OttaksharaExamples /> */}
       <AlphabetLicense />
     </div>
   );

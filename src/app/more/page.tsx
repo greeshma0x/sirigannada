@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: strings.navMore.kn, alternates: { can
 export default function MorePage() {
   return (
     <div className="mx-auto max-w-2xl px-5 pt-6 pb-12">
-      <PageTitle k="navMore" />
+      <PageTitle k="navMore" showBack={false} />
       <MoreIndex />
     </div>
   );

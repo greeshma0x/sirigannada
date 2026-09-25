@@ -13,16 +13,23 @@ export function LetterCell({ glyph }: { glyph: string }) {
   const speak = useSpeakKannada();
   const inner = (
     <>
-      <span className="font-serif text-xl font-semibold leading-tight" lang="kn">
+      <span
+        className="font-serif text-xl font-semibold leading-none relative top-1"
+        lang="kn"
+      >
         {glyph}
       </span>
-      <span className="text-2xs text-muted" lang="en">
+      <span
+        className="text-2xs text-muted leading-none relative -top-0"
+        lang="en"
+      >
         {toIso15919(glyph)}
       </span>
     </>
   );
 
-  const className = "flex aspect-square min-h-11 w-full flex-col items-center justify-center gap-0.5 rounded-md border border-line bg-elevated text-ink px-1 py-1";
+  const className =
+    "flex aspect-square min-h-11 w-full flex-col items-center justify-center gap-0.5 rounded-md border border-line bg-elevated text-ink px-1 py-2";
 
   if (!speak) return <div className={className}>{inner}</div>;
 
