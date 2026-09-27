@@ -37,12 +37,12 @@ export function PageTitle({
           type="button"
           onClick={() => router.back()}
           aria-label={t("navBack")}
-          className="absolute top-4 left-2 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-accent-strong sm:hidden"
+          className="absolute top-6 left-2 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-accent-strong lg:hidden"
         >
           <ArrowLeftIcon size={24} />
         </button>
       )}
-      <div className="mb-6 flex justify-center sm:hidden">
+      <div className="mb-6 flex justify-center xl:hidden">
         <Wordmark />
       </div>
       {showHeading && (

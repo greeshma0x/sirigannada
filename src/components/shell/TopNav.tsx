@@ -10,21 +10,21 @@ import { useApp } from "@/components/providers/AppProviders";
 import { DESKTOP_NAV_ITEMS, isActive } from "./navItems";
 import { useOfflineReady } from "./useOfflineReady";
 
-/** Desktop-only header on a 2 px ink rule: mark + ಸಿರಿಗನ್ನಡ wordmark (no Latin line), Kannada links, offline status, Install. One row from xl up; below that the links take a centred second row so nothing overflows at tablet widths. Phones use the bottom bar; language and theme live on /more. */
+/** Desktop-only header on a 2 px ink rule: mark + ಸಿರಿಗನ್ನಡ wordmark (no Latin line), Kannada links, offline status, Install. Phones and tablets use the bottom bar; language and theme live on /more. */
 export function TopNav() {
   const pathname = usePathname();
   const { theme, setTheme, locale, setLocale, t } = useApp();
   const offlineReady = useOfflineReady();
 
   return (
-    <header className="no-print hidden md:block sticky top-0 z-40 bg-surface border-b-2 border-line-strong">
+    <header className="no-print hidden min-[1033px]:block sticky top-0 z-40 bg-surface border-b-2 border-line-strong">
       <div className="mx-auto max-w-8xl px-5 py-3 md:px-10 flex items-center justify-between gap-6">
         <Link href="/" className="shrink-0" style={{ lineHeight: 0 }}>
           <Wordmark size={40} showLatin />
         </Link>
 
         <nav
-          className="hidden md:flex items-center gap-1"
+          className="hidden min-[1033px]:flex items-center gap-1"
           aria-label={t("navPrimary")}
         >
           {DESKTOP_NAV_ITEMS.map((item) => {
@@ -48,7 +48,7 @@ export function TopNav() {
 
         <div className="flex items-center gap-2">
           <span
-            className="hidden md:inline-flex items-center gap-2 text-sm text-ink mr-2"
+            className="hidden min-[1033px]:inline-flex items-center gap-2 text-sm text-ink mr-2"
             aria-live="polite"
           >
             <span
@@ -57,7 +57,7 @@ export function TopNav() {
             />
             {offlineReady ? t("navOfflineReady") : t("navOnlineOnly")}
           </span>
-          <InstallButton className="hidden md:inline-flex" />
+          <InstallButton className="hidden min-[1033px]:inline-flex" />
           <button
             type="button"
             onClick={() => setLocale(locale === "kn" ? "en" : "kn")}

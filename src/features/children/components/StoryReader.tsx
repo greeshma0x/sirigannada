@@ -9,7 +9,7 @@ import { StoryArt } from "./StoryArt";
 export function StoryReader({ story }: { story: ChildStory }) {
   const { t, locale } = useApp();
   return (
-    <article className="mx-auto max-w-5xl px-4 pt-6 pb-12">
+    <article className="mx-auto max-w-5xl px-6 pt-8 pb-12">
       <PageTitle showHeading={false} />
       <Link
         href={`/children/${story.collection}`}

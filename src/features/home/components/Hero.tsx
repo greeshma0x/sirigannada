@@ -7,9 +7,9 @@ import { InstallButton } from "@/components/pwa/InstallButton";
 import { useApp } from "@/components/providers/AppProviders";
 
 /**
- * The serif headline leads on every width: 32 px on phones, 44 px on md+. The muted subline shows
- * on md+ only so the phone reaches the search field within the first screen. Submitting routes
- * to the dictionary.
+ * The serif headline leads on every width: 32 px through 1032 px, 44 px from 1033 px up. The muted
+ * subline shows from 1033 px up only so phones and tablets reach the search field within the
+ * first screen. Submitting routes to the dictionary.
  */
 export function Hero() {
   const { locale, t } = useApp();
@@ -18,16 +18,24 @@ export function Hero() {
 
   const go = () => {
     const query = q.trim();
-    router.push(query ? `/dictionary?q=${encodeURIComponent(query)}` : "/dictionary");
+    router.push(
+      query ? `/dictionary?q=${encodeURIComponent(query)}` : "/dictionary",
+    );
   };
 
   return (
-    <section className="pt-5 md:pt-10">
-      <div className="mb-5 md:mb-8">
-        <h1 className="font-serif text-3xl md:text-4xl font-bold text-ink leading-tight max-w-3xl" lang={locale}>
+    <section className="pt-5 min-[1033px]:pt-10">
+      <div className="mb-5 min-[1033px]:mb-8">
+        <h1
+          className="font-serif text-xl min-[1033px]:text-2xl font-bold text-ink leading-tight max-w-3xl"
+          lang={locale}
+        >
           {t("homeHeroTitle")}
         </h1>
-        <p className="hidden md:block mt-6 text-base text-secondary max-w-xl" lang={locale}>
+        <p
+          className="hidden min-[1033px]:block mt-6 text-base text-secondary max-w-xl"
+          lang={locale}
+        >
           {t("homeHeroBody")}
         </p>
       </div>
@@ -50,7 +58,7 @@ export function Hero() {
           {t("homeSearchHelper")}
         </p>
       </form>
-      <InstallButton className="mt-4 md:hidden" />
+      <InstallButton className="mt-4 min-[1033px]:hidden" />
     </section>
   );
 }

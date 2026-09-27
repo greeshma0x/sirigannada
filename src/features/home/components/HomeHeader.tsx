@@ -10,7 +10,7 @@ export function HomeHeader() {
   const t = useT();
   const offlineReady = useOfflineReady();
   return (
-    <div className="flex items-center justify-between gap-4 pt-6 md:hidden">
+    <div className="flex items-center justify-between gap-4 pt-8 min-[1033px]:hidden">
       <Link href="/" style={{ fontSize: 28, lineHeight: 0 }}>
         <Wordmark size={36} />
       </Link>
