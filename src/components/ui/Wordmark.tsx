@@ -5,7 +5,7 @@ import { LogoMark } from "./LogoMark";
  * beneath when asked. Always text, never an image. Kannada leads; English never sits above it.
  */
 export function Wordmark({
-  size = 28,
+  size = 32,
   showLatin = false,
 }: {
   size?: number;
@@ -13,7 +13,9 @@ export function Wordmark({
 }) {
   return (
     <span className="inline-flex items-center gap-3">
-      <LogoMark size={size} />
+      <div className="relative -top-2">
+        <LogoMark size={size} />
+      </div>
       <span className="flex flex-col leading-none">
         <span
           className="font-serif font-bold text-ink"
@@ -22,18 +24,16 @@ export function Wordmark({
         >
           ಸಿರಿಗನ್ನಡ
         </span>
-        {showLatin && (
-          <span
-            className="font-latin text-muted tracking-wordmark uppercase leading-none"
-            style={{
-              fontSize: Math.max(10, size * 0.3),
-              marginTop: Math.round(size * 0.06),
-            }}
-            lang="en"
-          >
-            Sirigannada
-          </span>
-        )}
+        <span
+          className="font-latin text-muted tracking-wordmark uppercase leading-none"
+          style={{
+            fontSize: Math.max(10, size * 0.3),
+            marginTop: Math.round(size * 0.06),
+          }}
+          lang="en"
+        >
+          Sirigannada
+        </span>
       </span>
     </span>
   );

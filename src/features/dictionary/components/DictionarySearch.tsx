@@ -19,6 +19,7 @@ import { DownloadDictionaryButton } from "./DownloadDictionaryButton";
 import { SearchEmptyState } from "./SearchEmptyState";
 import { SearchResults } from "./SearchResults";
 import { KannadaKeyboard } from "./KannadaKeyboard";
+import { Wordmark } from "@/components/ui/Wordmark";
 
 export function DictionarySearch() {
   const t = useT();
@@ -28,11 +29,13 @@ export function DictionarySearch() {
   const [cursor, setCursor] = useState<number | null>(null);
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const { results, suggestions, loading } = useSearch(q);
-  const { history, favourites, rememberSearch, clearHistory, toggleStar } = useSavedLists();
+  const { history, favourites, rememberSearch, clearHistory, toggleStar } =
+    useSavedLists();
 
   // Track the search input's caret so on-screen-keyboard keys insert where the
   // user last placed it, instead of always appending to the end of the query.
-  const captureCursor = (event: SyntheticEvent<HTMLInputElement>) => setCursor(event.currentTarget.selectionStart);
+  const captureCursor = (event: SyntheticEvent<HTMLInputElement>) =>
+    setCursor(event.currentTarget.selectionStart);
 
   const insertText = (text: string) => {
     const result = insertAtCursor(q, text, cursor);
@@ -54,7 +57,9 @@ export function DictionarySearch() {
     const currentQ = params.get("q") ?? "";
     if (trimmed && trimmed === permalink) return;
     if (trimmed === currentQ) return;
-    const url = trimmed ? `/dictionary?q=${encodeURIComponent(trimmed)}` : "/dictionary";
+    const url = trimmed
+      ? `/dictionary?q=${encodeURIComponent(trimmed)}`
+      : "/dictionary";
     router.replace(url, { scroll: false });
   }, [q, params, router]);
 
@@ -71,6 +76,9 @@ export function DictionarySearch() {
   return (
     <div className="flex flex-col gap-6">
       <div>
+        <div className="mb-4 flex justify-center sm:hidden">
+          <Wordmark />
+        </div>
         <div className="flex items-center gap-2">
           <div className="min-w-0 flex-1">
             <SearchBox
@@ -89,7 +97,9 @@ export function DictionarySearch() {
           </div>
           <IconButton
             onClick={() => setKeyboardOpen((v) => !v)}
-            aria-label={keyboardOpen ? t("kbdCloseKeyboard") : t("kbdOpenKeyboard")}
+            aria-label={
+              keyboardOpen ? t("kbdCloseKeyboard") : t("kbdOpenKeyboard")
+            }
             aria-pressed={keyboardOpen}
           >
             <KeyboardIcon size={20} />
@@ -111,20 +121,27 @@ export function DictionarySearch() {
         </div>
       )}
 
-      {/* Kept mounted (not conditionally rendered) so screen readers reliably announce text
-          changes on this live region — only its content should change, never its presence. */}
-      <p className="text-sm text-muted" role="status" aria-live="polite">
-        {q.trim() && !loading ? resultCountLabel(t, results.length) : ""}
-      </p>
-
-      {!loading && q.trim() && results.length === 0 && suggestions.length > 0 && (
-        <div className="flex flex-col items-center gap-4 py-8">
-          <DidYouMean words={suggestions} onPick={setQ} />
-        </div>
+      {q.trim() && !loading && (
+        <p className="text-sm text-muted" role="status" aria-live="polite">
+          {resultCountLabel(t, results.length)}
+        </p>
       )}
 
+      {!loading &&
+        q.trim() &&
+        results.length === 0 &&
+        suggestions.length > 0 && (
+          <div className="flex flex-col items-center gap-4 py-8">
+            <DidYouMean words={suggestions} onPick={setQ} />
+          </div>
+        )}
+
       {results.length > 0 && (
-        <SearchResults results={results} favourites={favourites} onToggleFavourite={toggleStar} />
+        <SearchResults
+          results={results}
+          favourites={favourites}
+          onToggleFavourite={toggleStar}
+        />
       )}
 
       {!q.trim() && (
